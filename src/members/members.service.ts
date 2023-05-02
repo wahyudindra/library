@@ -1,9 +1,9 @@
-import { ErrorMessage } from '@common/constants/error-message';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
-import { BaseRepository } from '@utils/base-repository';
 import * as dayjs from 'dayjs';
-import { PrismaService } from 'src/common/prisma.service';
+import { ErrorMessage } from './../common/constants/error-message';
+import { PrismaService } from './../common/prisma.service';
+import { BaseRepository } from './../utils/base-repository';
 
 @Injectable()
 export class MembersService extends BaseRepository {

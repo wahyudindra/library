@@ -1,9 +1,9 @@
 import { BadRequestException } from '@nestjs/common';
 import { PaginationResponseType, PaginationUtils } from './pagination.utils';
-import { ErrorMessage } from '@common/constants/error-message';
 import { PaginationQueryDto } from './dto/pagination-query.dto';
-import { PrismaService } from '@common/prisma.service';
 import { FindOneDto } from './dto/find-one.dto';
+import { PrismaService } from './../common/prisma.service';
+import { ErrorMessage } from './../common/constants/error-message';
 
 export class BaseRepository {
     private prismaService: PrismaService;
