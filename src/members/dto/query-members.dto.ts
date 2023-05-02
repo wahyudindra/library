@@ -1,6 +1,6 @@
 import { ApiPropertyOptional, OmitType } from '@nestjs/swagger';
-import { FindManyDto } from '@utils/dto/find-many.dto';
 import { IsOptional, IsString } from 'class-validator';
+import { FindManyDto } from 'src/utils/dto/find-many.dto';
 
 export class QueryMembersDto extends OmitType(FindManyDto, ['includes', 'searchBy', 'filter'] as const) {
     @IsString()
