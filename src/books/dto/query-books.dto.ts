@@ -2,7 +2,7 @@ import { ApiPropertyOptional, OmitType } from '@nestjs/swagger';
 import { FindManyDto } from '@utils/dto/find-many.dto';
 import { IsOptional, IsString } from 'class-validator';
 
-export class QueryMembersDto extends OmitType(FindManyDto, ['includes', 'searchBy', 'filter'] as const) {
+export class QueryBooksDto extends OmitType(FindManyDto, ['includes', 'searchBy', 'filter'] as const) {
     @IsString()
     @IsOptional()
     @ApiPropertyOptional({
@@ -13,7 +13,7 @@ export class QueryMembersDto extends OmitType(FindManyDto, ['includes', 'searchB
 
     @IsString()
     @IsOptional()
-    @ApiPropertyOptional({ description: 'Search can only consist of code and name' })
+    @ApiPropertyOptional({ description: 'Search can only consist of code, title, and author' })
     searchBy?: string;
 
     @IsString()
