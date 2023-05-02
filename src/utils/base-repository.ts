@@ -28,9 +28,9 @@ export class BaseRepository {
         }
     }
 
-    async findOne(id: string, query?: FindOneDto) {
+    async findOne(code: string, query?: FindOneDto) {
         const data = await this.resource.findUnique({
-            where: { id },
+            where: { code },
             ...(query?.include && { include: query?.include }),
         });
 
@@ -50,11 +50,11 @@ export class BaseRepository {
         }
     }
 
-    async update(id: string, data: any) {
-        await this.findOne(id);
+    async update(code: string, data: any) {
+        await this.findOne(code);
 
         try {
-            return await this.resource.update({ where: { id }, data });
+            return await this.resource.update({ where: { code }, data });
         } catch (err) {
             throw new BadRequestException(
                 err.code === 'P2002'
@@ -64,9 +64,9 @@ export class BaseRepository {
         }
     }
 
-    async remove(id: string) {
-        await this.findOne(id);
+    async remove(code: string) {
+        await this.findOne(code);
 
-        return this.resource.delete({ where: { id } });
+        return this.resource.delete({ where: { code } });
     }
 }
