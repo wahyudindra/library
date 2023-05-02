@@ -16,9 +16,9 @@ export class BooksController {
         return this.booksService.findAll(query);
     }
 
-    @Get(':id')
-    findOne(@Param('id') id: string, @Query() query: QueryBookDto) {
-        return this.booksService.findOne(id, { include: { borrows: !!query.includeBorrows } });
+    @Get(':code')
+    findOne(@Param('code') code: string, @Query() query: QueryBookDto) {
+        return this.booksService.findOne(code, { include: { borrows: !!query.includeBorrows } });
     }
 
     @Post()
@@ -26,13 +26,13 @@ export class BooksController {
         return this.booksService.create(data);
     }
 
-    @Patch(':id')
-    update(@Param('id') id: string, @Body() data: UpdateBookDto) {
-        return this.booksService.update(id, data);
+    @Patch(':code')
+    update(@Param('code') code: string, @Body() data: UpdateBookDto) {
+        return this.booksService.update(code, data);
     }
 
-    @Delete(':id')
-    remove(@Param('id') id: string) {
-        return this.booksService.remove(id);
+    @Delete(':code')
+    remove(@Param('code') code: string) {
+        return this.booksService.remove(code);
     }
 }
