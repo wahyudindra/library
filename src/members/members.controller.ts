@@ -41,4 +41,9 @@ export class MembersController {
     borrowBook(@Param('code') code: string, @Body() data: BookDto) {
         return this.membersService.borrowBook(code, data.bookCode);
     }
+
+    @Post(':code/return-book')
+    returnsBook(@Param('code') code: string, @Body() data: BookDto) {
+        return this.membersService.returnsBook(code, data.bookCode);
+    }
 }

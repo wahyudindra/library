@@ -33,4 +33,21 @@ export class MembersService extends BaseRepository {
 
         return await this.prisma.borrow.create({ data: { bookCode, memberCode } });
     }
+
+    async returnsBook(memberCode: string, bookCode: string) {
+        const borrow = await this.prisma.borrow.findFirst({
+            where: { memberCode, bookCode, returnedAt: null },
+            orderBy: { createdAt: 'asc' },
+        });
+        if (!borrow) throw new BadRequestException(ErrorMessage.MEMBER_NOT_BORROW);
+
+        return await this.prisma.borrow.update({
+            where: { id: borrow.id },
+            include: { penalty: true },
+            data: {
+                returnedAt: dayjs().toDate(),
+                ...(dayjs(borrow.createdAt).add(7, 'hour').isBefore(dayjs()) && { penalty: { create: {} } }),
+            },
+        });
+    }
 }
