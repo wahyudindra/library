@@ -30,13 +30,13 @@ model Book {
 
 model Borrow {
   id         String    @id @default(uuid())
-  bookId     String
-  memberId   String
+  bookCode   String
+  memberCode String
   returnedAt DateTime?
   createdAt  DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
-  book       Book      @relation(fields: [bookId], references: [code], onDelete: Cascade)
-  member     Member    @relation(fields: [memberId], references: [code], onDelete: Cascade)
+  book       Book      @relation(fields: [bookCode], references: [code], onDelete: Cascade)
+  member     Member    @relation(fields: [memberCode], references: [code], onDelete: Cascade)
   penalty    Penalty?
 }
 
